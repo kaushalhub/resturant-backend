@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require("dotenv");
-
+const connectDB = require("./config/db");
 // Load Dotenv
 dotenv.config({ path: "./config/.env" });
 
@@ -15,6 +15,8 @@ app.listen(
     on ${process.env.PORT} on ${process.env.NODE_ENV} mode`
   )
 );
+
+connectDB();
 
 // Routes Files
 const hotels = require("./routes/hotels");
