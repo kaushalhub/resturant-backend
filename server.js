@@ -1,13 +1,25 @@
 const express = require('express');
-const dotenv = require('dotenv').config()
+const dotenv = require("dotenv");
+
+// Load Dotenv
+dotenv.config({ path: "./config/.env" });
+
 const app = express();
 
-const PORT = process.env.PORT || 7000;
+const PORT = process.env.PORT || 5000;
 
-app.get('/', (req, res) => {
-    res.send('Its Our First API');
-})
+app.listen(
+  PORT,
+  console.log(
+    `Server is Running on Port 
+    on ${process.env.PORT} on ${process.env.NODE_ENV} mode`
+  )
+);
 
-app.listen(PORT, (req, res) => {
-    console.log(`Server is Running on PORT ${PORT}`)
-})
+// Routes Files
+const hotels = require("./routes/hotels");
+
+
+// Mount router
+
+app.use("/api/v1/hotels", hotels);
