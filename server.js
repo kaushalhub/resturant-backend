@@ -1,10 +1,17 @@
 const express = require('express');
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
+var bodyParser = require("body-parser");
 // Load Dotenv
 dotenv.config({ path: "./config/.env" });
 
 const app = express();
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+// parse application/json
+app.use(bodyParser.json())
 
 const PORT = process.env.PORT || 5000;
 
@@ -17,6 +24,8 @@ app.listen(
 );
 
 connectDB();
+
+
 
 // Routes Files
 const hotels = require("./routes/hotels");
