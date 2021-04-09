@@ -1,8 +1,8 @@
 const Hotel = require('../model/Hotel');
 
-// @desc   get All Hotels
-// url(get)     /api/v1/hotels
-// Type    Public
+// @desc     get All Hotels
+// url(get)  /api/v1/hotels
+// Type      Public
 exports.getHotels = async (req, res, next) => {  
   try {
     const hotels = await Hotel.find();
@@ -13,9 +13,9 @@ exports.getHotels = async (req, res, next) => {
   }
 };
 
-// @desc   add Hotels
-// url(post)     /api/v1/hotels
-// Type    Public
+// @desc      add Hotels
+// url(post)  /api/v1/hotels
+// Type       Public
 exports.addHotels = async(req, res, next) => {
   try {
     const hotel = await Hotel.create(req.body);
@@ -26,9 +26,9 @@ exports.addHotels = async(req, res, next) => {
   }
 };
 
-// @desc   fetch Single Hotels
-// url(get)     /api/v1/hotels/:id
-// Type    Public
+// @desc       fetch Single Hotels
+// url(get)    /api/v1/hotels/:id
+// Type        Public
 exports.getHotel = async (req, res, next) => {
   try{
     const hotel = await Hotel.findById(req.params.id);
@@ -39,9 +39,9 @@ exports.getHotel = async (req, res, next) => {
   }
 };
 
-// @desc    update Hotels
-// url(put)     /api/v1/hotels/:id
-// Type    Public
+// @desc       update Hotels
+// url(put)    /api/v1/hotels/:id
+// Type        Public
 exports.updateHotel = async (req, res, next) => {
   try {
     const hotel = await Hotel.findByIdAndUpdate(req.params.id, req.body, {
@@ -56,9 +56,9 @@ exports.updateHotel = async (req, res, next) => {
   res.send({ success: true, msg: `Update Hotel ${req.params.id}` }).json();
 };
 
-// @desc    update Hotels
-// url(delete)     /api/v1/hotels/:id
-// Type    Public
+// @desc       update Hotels
+// url(delete) /api/v1/hotels/:id
+// Type        Public
 exports.deleteHotel = async (req, res, next) => {
   try {
     const hotel = await Hotel.findByIdAndRemove(req.params.id)
