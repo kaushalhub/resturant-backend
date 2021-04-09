@@ -3,28 +3,27 @@ const Hotel = require('../model/Hotel');
 // @desc   get All Hotels
 // url(get)     /api/v1/hotels
 // Type    Public
-exports.getHotels = (req, res, next) => {
+exports.getHotels = (req, res, next) => {  
   res.send({ success: true, msg: "Hotel Fetch SuccessFully!" }).json();
 };
 
 // @desc   add Hotels
 // url(post)     /api/v1/hotels
 // Type    Public
-exports.addHotels = (req, res, next) => {
-  const hotel = Hotel.create(req.body);
-
-  console.log("data", hotel);
-
-  res.send({ success: true, msg: "Hotel Added SuccessFully!" }).json();
-};;
+exports.addHotels = async (req, res, next) => {
+  const hotel = await Hotel.create(req.body);
+};
 
 // @desc   fetch Single Hotels
 // url(get)     /api/v1/hotels/:id
 // Type    Public
-exports.getHotel = (req, res, next) => {
-  res
-    .send({ success: true, msg: `Single Hotel Fetch By ${req.params.id}` })
-    .json();
+exports.getHotel = async (req, res, next) => {
+  const hotel = await Hotel.findById(req.params.id);
+
+  res.status(200).json({ success: true, data: hotel });
+  // res
+  //   .send({ success: true, msg: `Single Hotel Fetch By ${req.params.id}` })
+  //   .json();
 };
 
 // @desc    update Hotels
@@ -37,6 +36,6 @@ exports.updateHotel = (req, res, next) => {
 // @desc    update Hotels
 // url(delete)     /api/v1/hotels/:id
 // Type    Public
-exports.deleteHotel = (req, res, next) => {
+exports.deleteHotel = async (req, res, next) => {
   res.send({ success: true, msg: `Delete Hotel ofId ${req.params.id}` }).json();
 };

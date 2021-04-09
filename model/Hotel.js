@@ -4,7 +4,7 @@ const HotelSchema = new mongoose.Schema({
   name: {
     type: String,
     require: [true, "Please Add Name"],
-    unique: false,
+    unique: true,
     maxlength: [50, "Please add Max length of name"],
   },
   description: {
