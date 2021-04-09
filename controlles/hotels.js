@@ -18,12 +18,9 @@ exports.addHotels = async (req, res, next) => {
 // url(get)     /api/v1/hotels/:id
 // Type    Public
 exports.getHotel = async (req, res, next) => {
-  const hotel = await Hotel.findById(req.params.id);
-
-  res.status(200).json({ success: true, data: hotel });
-  // res
-  //   .send({ success: true, msg: `Single Hotel Fetch By ${req.params.id}` })
-  //   .json();
+  res
+    .send({ success: true, msg: `Single Hotel Fetch By ${req.params.id}` })
+    .json();
 };
 
 // @desc    update Hotels
